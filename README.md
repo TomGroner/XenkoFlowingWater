@@ -11,7 +11,7 @@ This sample shows a simple way to general moving water by using a scrolling flow
 ![alt text](docs/images/game-screenshot.png "Editor Screenshot")
 
 ### Options
-![alt text](docs/images/editor-options.PNG "Editor Screenshot")
+![alt text](docs/images/editor-options.png "Editor Screenshot")
 
 * Render Group - The [WaterFlowMapRenderFeature](XenkoFlowingWater/WaterFlowMapRenderFeature.cs) has a parameter that is setup in the GraphicsComposer for which render group(s) to include. Make sure this property is set to one that the WaterFlowMapRenderFeature is targeting.
 * Size - How large the piece of water should be, in Xenko units.
