@@ -4,6 +4,8 @@ This sample shows a simple way to general moving water by using a scrolling flow
 
 ## Screenshots
 
-![alt text](docs/images/editor-screenshot.png "Editor Screenshot")
+### In-Editor
+![alt text](docs/images/editor-screenshot.PNG "Editor Screenshot")
 
+### In-Game
 ![alt text](docs/images/game-screenshot.png "Editor Screenshot")
