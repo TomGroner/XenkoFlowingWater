@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.168
+MinimumVisualStudioVersion = 14.0.23107.0
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XenkoFlowingWater.Windows", "XenkoFlowingWater.Windows\XenkoFlowingWater.Windows.csproj", "{7D8D3204-C511-4AB9-BABC-48939A0A4D5F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XenkoFlowingWater", "XenkoFlowingWater\XenkoFlowingWater.csproj", "{953FE9A8-3236-4EA4-A3A7-C8AFBBDCA463}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7D8D3204-C511-4AB9-BABC-48939A0A4D5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D8D3204-C511-4AB9-BABC-48939A0A4D5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D8D3204-C511-4AB9-BABC-48939A0A4D5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D8D3204-C511-4AB9-BABC-48939A0A4D5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{953FE9A8-3236-4EA4-A3A7-C8AFBBDCA463}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{953FE9A8-3236-4EA4-A3A7-C8AFBBDCA463}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{953FE9A8-3236-4EA4-A3A7-C8AFBBDCA463}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{953FE9A8-3236-4EA4-A3A7-C8AFBBDCA463}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A552464D-A237-4979-BF9B-7D3C77C420F8}
+	EndGlobalSection
+EndGlobal

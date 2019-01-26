@@ -1,0 +1,139 @@
+﻿shader WaterFlowMapShader : PositionVertexTransform, Texturing
+{
+  #define PI 3.141592
+  #define SPECULAR_POWER 18
+  #define SPECULAR_INTENSITY 1.1
+
+  cbuffer PerMaterial
+  {
+    [Color] stage float3 SunColor;
+    stage float2 SkyTextureOffset;    
+    stage float3 CameraPosition;
+    stage float3 DirectionToLight;                
+    stage float2 NormalPhase;		               
+    stage float4 NormalOffsets;	           
+    stage float2 DiffusePhase;       
+    stage float4 DiffuseOffsets;        
+    stage float NormalPulseReduction;
+    stage float DiffusePulseReduction;        
+    stage float DisplacementSpeed;
+    stage float DisplacementAmplitude;
+    stage float WaterTransparency;    
+    stage float TextureScale;    
+    stage int UseCaustics;
+  }
+
+  rgroup PerMaterial
+  {    
+    stage Texture2D SkyTexture;
+    stage Texture2D WaterFloorTexture;
+    stage Texture2D DiffuseTexture0;
+    stage Texture2D DiffuseTexture1;    
+    stage Texture2D NormalTexture0;
+    stage Texture2D NormalTexture1;
+    stage Texture2D FlowMapTexture;
+    stage Texture2D NoiseTexture;  
+  }
+  
+  stage override void VSMain()
+  {
+    float phase1 = length(streams.TexCoord - 0.5f);  
+    float phase2 = streams.TexCoord.y - 0.95f;
+    float phase = lerp(phase1, phase2, 0.25f);
+    streams.Position.y += sin((phase + Global.Time * DisplacementSpeed) * 2 * 3.14) * DisplacementAmplitude;
+    streams.ShadingPosition = mul(streams.Position, WorldViewProjection);    
+    base.VSMain();
+  }
+  
+  stage override void PSMain()
+  {
+    streams.ColorTarget = Compute();      
+  }
+
+  float4 Compute()
+  {    
+    // Sample a flow map and random noise value to apply offsets to the other
+    // samples. Note we are only grabbing the R and G from the map. R is an X
+    // displacemeny and G is a Y displacement.
+    float2 flowmap = FlowMapTexture.Sample(RepeatSampler, streams.TexCoord).rg;
+    float noiseSample = NoiseTexture.Sample(RepeatSampler, streams.TexCoord).r;        
+
+    // Sample two normals and combine them to help smooth, offset by the flow and noise
+    float normalPhase0 = (NormalPhase.x + noiseSample * NormalPulseReduction / TextureScale) % 1;
+	  float normalPhase1 = (NormalPhase.y + noiseSample * NormalPulseReduction / TextureScale) % 1;
+    float2 normalTexCoord0 = streams.TexCoord + NormalOffsets.xy + flowmap * normalPhase0;
+    float2 normalTexCoord1 = streams.TexCoord + NormalOffsets.zw + flowmap * normalPhase1;
+    float3 normalSample0 = NormalTexture0.Sample(RepeatSampler, normalTexCoord0 * TextureScale);
+	  float3 normalSample1 = NormalTexture1.Sample(RepeatSampler, normalTexCoord1 * TextureScale);
+    float normalBlend  = 2 * abs(normalPhase0 - 0.5);
+    float3 finalNormal = normalize(lerp(normalSample0, normalSample1, normalBlend));
+
+    // Create a specular effect in relation to the light and the normal we just calculated.
+    float directionalIntensity = saturate(dot(finalNormal, DirectionToLight));
+    float3 reflectionVector = normalize(reflect(-DirectionToLight, finalNormal));
+    float3 directionToCamera = normalize(CameraPosition - streams.PositionWS);
+    float lightPower = dot(reflectionVector, directionToCamera);
+    float3 specularTerm = saturate(SunColor * SPECULAR_INTENSITY * pow(saturate(lightPower), SPECULAR_POWER));
+
+    // Grab a piece of the sky and put it on the water. Note: this is the primary part that gives the
+    // water color.
+    float3 skyReflectionVector = normalize(reflect(streams.PositionWS - CameraPosition, finalNormal));
+    float2 thetaPhi = 3 * (((atan2(skyReflectionVector.yy + SkyTextureOffset, skyReflectionVector.xz + SkyTextureOffset) + PI) % PI) / PI);    
+    float3 skyColor = SkyTexture.Sample(RepeatSampler, thetaPhi).rgb;  
+
+    // Grab the foam offset with the flow and noise.
+    float diffusePhase0 = (DiffusePhase.x + noiseSample * DiffusePulseReduction / TextureScale) % 1 - 0.5;
+	  float diffusePhase1 = (DiffusePhase.y + noiseSample * DiffusePulseReduction / TextureScale) % 1 - 0.5;
+    float2 diffuseTexCoord1 = streams.TexCoord + DiffuseOffsets.xy + flowmap * diffusePhase0;
+		float2 diffuseTexCoord2 = streams.TexCoord + DiffuseOffsets.zw + flowmap * diffusePhase1;
+    float3 diffuseSample0 = DiffuseTexture0.Sample(RepeatSampler, diffuseTexCoord1 * TextureScale);
+		float3 diffuseSample1 = DiffuseTexture1.Sample(RepeatSampler, diffuseTexCoord2 * TextureScale);
+    float diffuseBlend = 2 * abs(diffusePhase0);
+		float3 finalDiffuse = lerp(diffuseSample0, diffuseSample1, diffuseBlend); 
+
+    float waterFloorPhase0 = (NormalPhase.x + noiseSample * NormalPulseReduction ) % 1;
+    float waterFloorPhase1 = (NormalPhase.y + noiseSample * NormalPulseReduction ) % 1;   
+    float2 waterFloorTexCoord1 = (streams.TexCoord + NormalOffsets.xy) * TextureScale;
+    float2 waterFloorTexCoord2 = (streams.TexCoord + NormalOffsets.zw) * TextureScale;
+
+    float3 waterFloorSample = WaterFloorTexture.Sample(RepeatSampler, waterFloorTexCoord1);    
+    float3 waterFloorSample2 = WaterFloorTexture.Sample(RepeatSampler, waterFloorTexCoord2);
+    float3 finalWaterFloorSample = lerp(waterFloorSample, waterFloorSample2, normalBlend);     
+
+    if (UseCaustics > 0) 
+    {
+      finalWaterFloorSample *= GetCaustics().rgb;;
+    }    
+    
+    // Combine it all. Passing in a transparency is simple for this example. A better technique would be
+    // a height map for how deep the water is.
+    return float4((skyColor + finalDiffuse + finalWaterFloorSample) * directionalIntensity  + specularTerm, WaterTransparency);    
+  }
+
+  float4 GetCaustics()
+  {
+    float2 q = streams.TexCoord * TextureScale;// * 2.0f - 1.0f;
+    q.x += 2.0f;
+    float2 p = 10.0f * mul(q, float2x2(0.7071, -0.7071, 0.7071, 0.7071));
+    float2 pi = floor(p);
+    float4 v = float4(pi.xy, pi.xy + 1.0);
+    v -= 64.0f * floor(v * 0.015);
+    v.xz = v.xz * 1.435 + 34.423;
+    v.yw = v.yw * 2.349 + 183.37;
+    v = v.xzxz * v.yyww;
+    v *= v;
+    v *= Global.Time * 0.000001 + 0.5; // the .00004 is the speed that the cells move, make a variable (maybe an enum? fast/slow/super fast and convert when sending to the shader?)
+
+    float4 vx = 0.25 * sin(frac(v * 0.00047) * 6.2831853);
+    float4 vy = 0.25 * sin(frac(v * 0.00074) * 6.2831853);
+
+    float2 pf = p - pi;
+    vx += float4(0.0, 1.0, 0.0, 1.0) - pf.xxxx;
+    vy += float4(0.0, 0.0, 1.0, 1.0) - pf.yyyy;
+    v = vx * vx + vy * vy;
+    
+    v.xy = min(v.xy, v.zw);
+    float3 col = lerp(float3(0.0,0.4,0.9), float3(0.0,0.95,0.9), min(v.x, v.y) );     
+	  return float4(col, 0.3);
+  }
+};

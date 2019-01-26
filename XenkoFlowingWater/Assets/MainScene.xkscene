@@ -1,0 +1,108 @@
+!SceneAsset
+Id: d19be8e3-3b9f-4abe-b2a4-4478d0049bba
+SerializedVersion: {Xenko: 3.1.0.1}
+Tags: []
+ChildrenIds: []
+Offset: {X: 0.0, Y: 0.0, Z: 0.0}
+Hierarchy:
+    RootParts:
+        - ref!! bf4447a5-e3d4-4414-95a6-57bbf7be9a02
+        - ref!! 0e5f1225-3d3b-4cd3-bf52-ff1522b06ca3
+        - ref!! 030c40d0-6cd9-4932-a65d-1950acf71bb4
+        - ref!! d85539d9-8c6b-415c-aaa3-4a1b858ee465
+    Parts:
+        -   Entity:
+                Id: 030c40d0-6cd9-4932-a65d-1950acf71bb4
+                Name: Skybox
+                Components:
+                    132a4d4dcb4e80a72d3799f3714bb2e7: !TransformComponent
+                        Id: e55f2766-3fe8-41a2-9592-b34bf5fb6a1e
+                        Position: {X: 0.0, Y: 2.0, Z: -2.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    eb509529515d1942f3817b0639b7cc7e: !BackgroundComponent
+                        Id: 43fab5a9-96b0-409c-8e96-a13b72636029
+                        Texture: 7324a444-c9f9-4004-8551-0094ed8e919a:Skybox texture
+                    facfee05132b54dc6fc9f78a6bc88ce3: !LightComponent
+                        Id: 5bb1bd06-4564-45bf-8bc4-6104b4cc0a3d
+                        Type: !LightSkybox
+                            Skybox: e7075a4d-5f26-4b32-90e8-9a77790f620e:Skybox
+        -   Entity:
+                Id: 0e5f1225-3d3b-4cd3-bf52-ff1522b06ca3
+                Name: Directional light
+                Components:
+                    1f50e3637d34dac223c7e2609ce19558: !TransformComponent
+                        Id: 4cdfc0fb-16ed-4964-8595-18e2183916c9
+                        Position: {X: 0.0, Y: 2.0, Z: 0.0}
+                        Rotation: {X: 1.131334E-08, Y: -0.9659258, Z: -0.258819044, W: -4.222196E-08}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    4f41d0fd038f921b2be1b4f318f47803: !LightComponent
+                        Id: 225bdade-2262-4ce7-8387-34c5204ced41
+                        Type: !LightDirectional
+                            Color: !ColorRgbProvider
+                                Value: {R: 1.0, G: 1.0, B: 1.0}
+                            Shadow:
+                                Enabled: true
+                                Filter: !LightShadowMapFilterTypePcf
+                                    FilterSize: Filter5x5
+                                Size: Large
+                                DepthRange: {}
+                                PartitionMode: !LightDirectionalShadowMap.PartitionLogarithmic {}
+                                ComputeTransmittance: false
+                                BiasParameters: {}
+                        Intensity: 20.0
+        -   Entity:
+                Id: bf4447a5-e3d4-4414-95a6-57bbf7be9a02
+                Name: Camera
+                Components:
+                    da4900de9f8c7a572334a67b8d19e35d: !TransformComponent
+                        Id: fc1dd77c-a6e8-447f-94a1-87a12bf4de7b
+                        Position: {X: 4.83915138, Y: 1.74083829, Z: 4.82534361}
+                        Rotation: {X: -0.17441386, Y: 0.4094323, Z: 0.07543939, W: 0.892330468}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    bb678484dab1ac086c60ab00c4c5cff7: !CameraComponent
+                        Id: 1b2c44c6-b832-46e0-9547-d444c07afe79
+                        Name: null
+                        Projection: Perspective
+                        Slot: 17ac9faa-3e0b-4985-8d9e-e117ae88a418
+                    936281f69d7eadaaec45f6d1d0d920f8: !XenkoFlowingWater.BasicCameraController,XenkoFlowingWater
+                        Id: bb803102-ad15-4bbc-b3ff-c421dc8fef30
+                        KeyboardMovementSpeed: {X: 5.0, Y: 5.0, Z: 5.0}
+                        TouchMovementSpeed: {X: 40.0, Y: 40.0, Z: 20.0}
+                        SpeedFactor: 5.0
+                        KeyboardRotationSpeed: {X: 3.0, Y: 3.0}
+                        MouseRotationSpeed: {X: 90.0, Y: 60.0}
+                        TouchRotationSpeed: {X: 60.0, Y: 40.0}
+        -   Entity:
+                Id: d85539d9-8c6b-415c-aaa3-4a1b858ee465
+                Name: Water
+                Components:
+                    12e985fff64ac504251eb8ee48a4bb43: !TransformComponent
+                        Id: e38e8c3d-20e8-445b-bfeb-8a309a8f75f4
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    600453c223dbd7a06c3a4e9f31d68b54: !WaterFlowMapEntityComponent
+                        Id: a318f9c9-5e35-4946-b6fc-e47473bea494
+                        Size: 10
+                        TextureScale: 5.0
+                        TesselationX: 10
+                        TesselationY: 10
+                        Sun: ref!! 225bdade-2262-4ce7-8387-34c5204ced41
+                        CameraSlot: 17ac9faa-3e0b-4985-8d9e-e117ae88a418
+                        NoiseMapTexture: 5acc9409-62d7-4a6b-a74f-991569427d50:Water Resources/noise
+                        SkyTexture: 51162195-9830-4423-9b12-d00c1b705e73:Water Resources/sky
+                        WaterFloorTexture: b4f62822-8751-4613-b8f3-cb63a1fcf3de:Water Resources/sand
+                        FlowMapTexture: 550f3650-6f55-4182-98e0-dfd3cc189cbb:Water Resources/flowmap
+                        NormalTexture1: f1e512c1-80ae-4f12-9bf2-eb2e87556523:Water Resources/wave0
+                        NormalTexture2: 37384704-1596-4b82-971c-3411d127e0e8:Water Resources/wave1
+                        DiffuseTexture1: f67d53d1-8a90-49e7-92df-38327b24ecfb:Water Resources/foam0
+                        DiffuseTexture2: febbea05-09a5-4657-9a0e-9df8c8a8cf65:Water Resources/foam1
+                        WaterTransparency: 0.85
+                        DisplacementSpeed: 0.25
+                        DisplacementAmplitude: 0.15
+                        UseCaustics: true
