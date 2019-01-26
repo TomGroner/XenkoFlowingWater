@@ -88,8 +88,8 @@ Hierarchy:
                         Children: {}
                     600453c223dbd7a06c3a4e9f31d68b54: !WaterFlowMapEntityComponent
                         Id: a318f9c9-5e35-4946-b6fc-e47473bea494
-                        Size: 10
-                        TextureScale: 5.0
+                        Size: 20
+                        TextureScale: 10.0
                         TesselationX: 10
                         TesselationY: 10
                         Sun: ref!! 225bdade-2262-4ce7-8387-34c5204ced41
@@ -104,5 +104,5 @@ Hierarchy:
                         DiffuseTexture2: febbea05-09a5-4657-9a0e-9df8c8a8cf65:Water Resources/foam1
                         WaterTransparency: 0.85
                         DisplacementSpeed: 0.25
-                        DisplacementAmplitude: 0.15
+                        DisplacementAmplitude: 0.4
                         UseCaustics: true

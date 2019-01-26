@@ -7,6 +7,22 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XenkoFlowingWater.Windows",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XenkoFlowingWater", "XenkoFlowingWater\XenkoFlowingWater.csproj", "{953FE9A8-3236-4EA4-A3A7-C8AFBBDCA463}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{E0C4DA21-4F96-46DC-821E-F78568A503D9}"
+	ProjectSection(SolutionItems) = preProject
+		docs\README.md = docs\README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{8AEFE48D-2284-4CB7-BA76-3F7ECA913CB9}"
+	ProjectSection(SolutionItems) = preProject
+		docs\images\editor-screenshot.PNG = docs\images\editor-screenshot.PNG
+		docs\images\game-screenshot.png = docs\images\game-screenshot.png
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AC5C123B-FF3F-456D-99AB-3C2D1466F951}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +40,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8AEFE48D-2284-4CB7-BA76-3F7ECA913CB9} = {E0C4DA21-4F96-46DC-821E-F78568A503D9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A552464D-A237-4979-BF9B-7D3C77C420F8}
