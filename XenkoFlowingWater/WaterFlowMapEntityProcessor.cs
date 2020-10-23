@@ -1,7 +1,7 @@
-﻿using Xenko.Core.Annotations;
-using Xenko.Engine;
-using Xenko.Games;
-using Xenko.Rendering;
+using Stride.Core.Annotations;
+using Stride.Engine;
+using Stride.Games;
+using Stride.Rendering;
 
 namespace XenkoFlowingWater
 {

@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Xenko.Graphics;
+using System.Collections.Generic;
+using Stride.Graphics;
 
 namespace XenkoFlowingWater
 {

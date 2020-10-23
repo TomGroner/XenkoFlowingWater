@@ -1,4 +1,4 @@
-﻿using Xenko.Core;
+using Stride.Core;
 
 namespace XenkoFlowingWater
 {

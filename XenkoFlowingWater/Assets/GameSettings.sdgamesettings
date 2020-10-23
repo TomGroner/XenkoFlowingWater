@@ -1,15 +1,15 @@
 !GameSettingsAsset
 Id: e765eddd-2189-4b01-b530-ce3b3ea7cea6
-SerializedVersion: {Xenko: 2.1.0.3}
+SerializedVersion: {Stride: 2.1.0.3}
 Tags: []
 DefaultScene: d19be8e3-3b9f-4abe-b2a4-4478d0049bba:MainScene
 GraphicsCompositor: 859944c1-ca06-4065-a376-df65aabc2331:GraphicsCompositor
 Defaults:
-    - !Xenko.Audio.AudioEngineSettings,Xenko.Audio
+    - !Stride.Audio.AudioEngineSettings,Stride.Audio
         HrtfSupport: false
-    - !Xenko.Assets.EditorSettings,Xenko.Assets
+    - !Stride.Assets.EditorSettings,Stride.Assets
         RenderingMode: HDR
-    - !Xenko.Navigation.NavigationSettings,Xenko.Navigation
+    - !Stride.Navigation.NavigationSettings,Stride.Navigation
         EnableDynamicNavigationMesh: false
         IncludedCollisionGroups: AllFilter
         BuildSettings:
@@ -30,21 +30,21 @@ Defaults:
                     MaxClimb: 0.25
                     MaxSlope: {Radians: 0.7853982}
                     Radius: 0.5
-    - !Xenko.Physics.PhysicsSettings,Xenko.Physics
+    - !Stride.Physics.PhysicsSettings,Stride.Physics
         Flags: None
         MaxSubSteps: 1
         FixedTimeStep: 0.0166666675
-    - !Xenko.Graphics.RenderingSettings,Xenko.Graphics
+    - !Stride.Graphics.RenderingSettings,Stride.Graphics
         DefaultBackBufferWidth: 1280
         DefaultBackBufferHeight: 720
         AdaptBackBufferToScreen: false
         DefaultGraphicsProfile: Level_10_0
         ColorSpace: Linear
         DisplayOrientation: LandscapeRight
-    - !Xenko.Streaming.StreamingSettings,Xenko.Engine
+    - !Stride.Streaming.StreamingSettings,Stride.Engine
         ManagerUpdatesInterval: 0:00:00:00.0330000
         ResourceLiveTimeout: 0:00:00:08.0000000
-    - !Xenko.Assets.Textures.TextureSettings,Xenko.Assets
+    - !Stride.Assets.Textures.TextureSettings,Stride.Assets
         TextureQuality: Fast
 Overrides: []
 PlatformFilters:

@@ -1,6 +1,6 @@
 !Texture
 Id: f1e512c1-80ae-4f12-9bf2-eb2e87556523
-SerializedVersion: {Xenko: 2.0.0.0}
+SerializedVersion: {Stride: 2.0.0.0}
 Tags: []
 Source: !file ../../Resources/wave0.png
 Type: !ColorTextureType

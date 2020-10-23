@@ -1,6 +1,6 @@
 !Texture
 Id: b4f62822-8751-4613-b8f3-cb63a1fcf3de
-SerializedVersion: {Xenko: 2.0.0.0}
+SerializedVersion: {Stride: 2.0.0.0}
 Tags: []
 Source: !file ../../Resources/sand.png
 Type: !ColorTextureType

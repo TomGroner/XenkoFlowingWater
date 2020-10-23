@@ -1,6 +1,6 @@
-﻿using Xenko.Core.Mathematics;
-using Xenko.Graphics;
-using Xenko.Graphics.GeometricPrimitives;
+using Stride.Core.Mathematics;
+using Stride.Graphics;
+using Stride.Graphics.GeometricPrimitives;
 
 namespace XenkoFlowingWater
 {
