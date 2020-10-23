@@ -1,8 +1,8 @@
-﻿using System;
-using Xenko.Core.Mathematics;
-using Xenko.Graphics;
-using Xenko.Rendering;
-using Xenko.Streaming;
+using System;
+using Stride.Core.Mathematics;
+using Stride.Graphics;
+using Stride.Rendering;
+using Stride.Streaming;
 
 namespace XenkoFlowingWater
 {

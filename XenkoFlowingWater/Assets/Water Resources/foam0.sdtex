@@ -1,6 +1,6 @@
 !Texture
 Id: f67d53d1-8a90-49e7-92df-38327b24ecfb
-SerializedVersion: {Xenko: 2.0.0.0}
+SerializedVersion: {Stride: 2.0.0.0}
 Tags: []
 Source: !file ../../Resources/foam0.png
 Type: !ColorTextureType

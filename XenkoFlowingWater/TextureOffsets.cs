@@ -1,5 +1,5 @@
-﻿using System;
-using Xenko.Core.Mathematics;
+using System;
+using Stride.Core.Mathematics;
 
 namespace XenkoFlowingWater
 {

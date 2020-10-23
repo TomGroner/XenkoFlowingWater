@@ -1,6 +1,6 @@
 !Texture
 Id: 550f3650-6f55-4182-98e0-dfd3cc189cbb
-SerializedVersion: {Xenko: 2.0.0.0}
+SerializedVersion: {Stride: 2.0.0.0}
 Tags: []
 Source: !file ../../Resources/flowmap.jpg
 Type: !ColorTextureType

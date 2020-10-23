@@ -1,6 +1,6 @@
 !Texture
 Id: 5acc9409-62d7-4a6b-a74f-991569427d50
-SerializedVersion: {Xenko: 2.0.0.0}
+SerializedVersion: {Stride: 2.0.0.0}
 Tags: []
 Source: !file ../../Resources/noise.png
 Type: !ColorTextureType

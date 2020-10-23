@@ -1,6 +1,6 @@
 !ProceduralModelAsset
 Id: 74a2bfd9-1b6c-4c0a-a7ab-3598ee1ae7e5
-SerializedVersion: {Xenko: 2.0.0.0}
+SerializedVersion: {Stride: 2.0.0.0}
 Tags: []
 Type: !PlaneProceduralModel
     Size: {X: 10.0, Y: 10.0}

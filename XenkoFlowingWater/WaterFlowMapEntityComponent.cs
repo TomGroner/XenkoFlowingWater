@@ -1,9 +1,10 @@
-﻿using System.ComponentModel;
-using Xenko.Core;
-using Xenko.Engine;
-using Xenko.Engine.Design;
-using Xenko.Graphics;
-using Xenko.Rendering.Compositing;
+using System.ComponentModel;
+using Stride.Core;
+using Stride.Engine;
+using Stride.Engine.Design;
+using Stride.Graphics;
+using Stride.Rendering;
+using Stride.Rendering.Compositing;
 
 namespace XenkoFlowingWater
 {
